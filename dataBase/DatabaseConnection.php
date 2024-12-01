@@ -6,7 +6,7 @@ class DatabaseConnection
     public $uri = "postgres://avnadmin:AVNS_nwE4HaCLlsPnTIqF0Xt@pg-31dd3fb6-student-d817.b.aivencloud.com:26836/defaultdb?sslmode=require";
 
     // Konstruktor inicjujący połączenie z bazą danych
-    public function __construct($dbname = "flota")
+    public function __construct()
     {
         $fields = parse_url($this->uri);
 
@@ -14,7 +14,7 @@ class DatabaseConnection
         $dsn = "pgsql:";
         $dsn .= "host=" . $fields["host"];
         $dsn .= ";port=" . $fields["port"];
-        $dsn .= ";dbname=" . $dbname;
+        $dsn .= ";dbname=" . "flota";
 
         try {
             // Inicjalizujemy połączenie PDO w momencie tworzenia obiektu
