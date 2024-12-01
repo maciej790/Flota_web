@@ -1,4 +1,6 @@
 <?php
+require_once "../users/Admin.php";
+$admin = new Admin();
 session_start();
 if (!isset($_SESSION['user']) or $_SESSION['user']['rola'] !== 'admin') {
     header("Location: ../index.php");
@@ -12,69 +14,81 @@ if (!isset($_SESSION['user']) or $_SESSION['user']['rola'] !== 'admin') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/admin-dashboard.css">
 </head>
 
+
+
 <body>
+    <div class="dashboard">
+        <!-- Lewa kolumna -->
+        <aside class="sidebar">
+            <h2>Menu</h2>
+            <ul>
+                <li><a href="#">Dodaj kierownika floty</a></li>
+            </ul>
+        </aside>
 
-    <!DOCTYPE html>
-    <html lang="en">
+        <!-- Górny pasek -->
+        <header class="topbar">
+            <h1>Panel Administratora</h1>
+        </header>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Dashboard Layout</title>
-        <link rel="stylesheet" href="dashboard.css">
-    </head>
+        <!-- Obszar roboczy -->
+        <main class="content">
+            <?php
+            if (isset($_GET['logout'])) {
+                unset($_SESSION['user']);
+                header("Location: ../index.php");
+            }
 
-    <body>
-        <div class="dashboard">
-            <!-- Lewa kolumna -->
-            <aside class="sidebar">
-                <h2>Menu</h2>
-                <ul>
-                    <li><a href="#">Dodaj kierownika floty</a></li>
-                    <li><a href="#">Edytuj dane kierownika floty</a></li>
-                    <li><a href="#">Usuń kierownika floty</a></li>
-                </ul>
-            </aside>
+            echo '<table border="1" cellpadding="10" cellspacing="0">';
+            echo '<thead>';
+            echo '<tr>';
+            echo '<th>Imię</th>';
+            echo '<th>Nazwisko</th>';
+            echo '<th>Login</th>';
+            echo '<th>Mail</th>';
+            echo '<th>Pesel</th>';
+            echo '<th>Akcje</th>'; // Kolumna dla opcji
+            echo '</tr>';
+            echo '</thead>';
+            echo '<tbody>';
 
-            <!-- Górny pasek -->
-            <header class="topbar">
-                <h1>Panel Administratora</h1>
-            </header>
+            $managers = $admin->getAllManagers();
 
-            <!-- Obszar roboczy -->
-            <main class="content">
-                <?php
-                if (isset($_GET['logout'])) {
-                    unset($_SESSION['user']);
-                    header("Location: ../index.php");
+            if (!empty($managers)) {
+                foreach ($managers as $manager) {
+                    echo '<tr>';
+                    echo '<td>' . htmlspecialchars($manager['imie']) . '</td>';
+                    echo '<td>' . htmlspecialchars($manager['nazwisko']) . '</td>';
+                    echo '<td>' . htmlspecialchars($manager['login']) . '</td>';
+                    echo '<td>' . htmlspecialchars($manager['mail']) . '</td>';
+                    echo '<td>' . htmlspecialchars($manager['pesel']) . '</td>';
+                    echo '<td>';
+                    echo '<a href="admin.php?id=' . htmlspecialchars($manager['id']) . '" class="edit">Edytuj</a> | ';
+                    echo '<a href="admin.php?id=' . htmlspecialchars($manager['id']) . '" class="delete">Usuń</a>';
+                    echo '</td>';
+                    echo '</tr>';
                 }
+            } else {
+                echo '<tr><td colspan="6">Brak kierowników do wyświetlenia</td></tr>';
+            }
+
+            echo '</tbody>';
+            echo '</table>';
+            ?>
+            <form action="" method="get">
+                <input type="submit" name="logout" value="logout" />
+            </form>
+        </main>
 
 
+    </div>
 
-                echo $_SESSION['user']['imie'];
-                echo "<br>";
-                echo $_SESSION['user']['nazwisko'];
-                echo "<br>";
-                echo $_SESSION['user']['mail'];
-                echo "<br>";
-                echo $_SESSION['user']['pesel'];
-                echo "<br>";
-                echo $_SESSION['user']['rola'];
+</body>
 
-                ?>
-                <form action="" method="get">
-                    <input type="submit" name="logout" value="logout" />
-                </form>
-            </main>
-
-        </div>
-
-    </body>
-
-    </html>
+</html>
 
 
 
