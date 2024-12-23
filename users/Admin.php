@@ -4,7 +4,7 @@ class Admin extends DatabaseConnection
 {
     public function getAllManagers()
     {
-        $sql = "SELECT * FROM users WHERE rola='kierownik'";
+        $sql = "SELECT * FROM osoby WHERE rola='kierownik'";
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();

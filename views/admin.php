@@ -26,6 +26,7 @@ if (!isset($_SESSION['user']) or $_SESSION['user']['rola'] !== 'admin') {
             <h2>Menu</h2>
             <ul>
                 <li><a href="#">Dodaj kierownika floty</a></li>
+
             </ul>
         </aside>
 
@@ -66,8 +67,8 @@ if (!isset($_SESSION['user']) or $_SESSION['user']['rola'] !== 'admin') {
                     echo '<td>' . htmlspecialchars($manager['mail']) . '</td>';
                     echo '<td>' . htmlspecialchars($manager['pesel']) . '</td>';
                     echo '<td>';
-                    echo '<a href="admin.php?id=' . htmlspecialchars($manager['id']) . '" class="edit">Edytuj</a> | ';
-                    echo '<a href="admin.php?id=' . htmlspecialchars($manager['id']) . '" class="delete">Usuń</a>';
+                    echo '<a href="admin.php?id=' . htmlspecialchars($manager['id_osoby']) . '" class="edit">Edytuj</a> | ';
+                    echo '<a href="admin.php?id=' . htmlspecialchars($manager['id_osoby']) . '" class="delete">Usuń</a>';
                     echo '</td>';
                     echo '</tr>';
                 }

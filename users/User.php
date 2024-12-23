@@ -7,7 +7,7 @@ class User extends DatabaseConnection
     {
 
         parent::__construct();
-        $sql = "SELECT * FROM users WHERE login = :login AND password = :password";
+        $sql = "SELECT * FROM osoby WHERE login = :login AND password = :password";
 
         try {
             // Przygotowanie zapytania z użyciem parametrów
