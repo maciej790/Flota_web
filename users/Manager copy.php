@@ -87,8 +87,8 @@ class Manager extends DatabaseConnection
     z.data_poczatek,
     z.data_koniec,
     p.marka,
-    z.uzasadnienie,
-    p.model
+    p.model,
+    z.uzadanienie
 FROM 
     zapytania z
 LEFT JOIN 

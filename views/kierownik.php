@@ -327,6 +327,7 @@ if (!isset($_SESSION['user']) or $_SESSION['user']['rola'] !== 'kierownik') {
                 echo '<th>Model pojazdu</th>';
                 echo '<th>Data początku</th>';
                 echo '<th>Data końca</th>';
+                echo '<th>Uzasadnienie</th>';
                 echo '<th>Akcje</th>'; // Kolumna dla opcji
                 echo '</tr>';
                 echo '</thead>';
@@ -342,6 +343,7 @@ if (!isset($_SESSION['user']) or $_SESSION['user']['rola'] !== 'kierownik') {
                         echo '<td>' . htmlspecialchars($requests['model']) . '</td>';
                         echo '<td>' . htmlspecialchars($requests['data_poczatek']) . '</td>';
                         echo '<td>' . htmlspecialchars($requests['data_koniec']) . '</td>';
+                        echo '<td>' . htmlspecialchars($requests['uzasadnienie']) . '</td>';
                         echo '<td>';
                         echo '<a href="?accept=' . htmlspecialchars($requests['id_zapytania']) . '" class="edit">Zatwierdz przydział</a>';
                         echo '<a href="?decline=' . htmlspecialchars($requests['id_zapytania']) . '" class="delete">Odrzuć przydział</a>';
