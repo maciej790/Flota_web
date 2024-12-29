@@ -16,7 +16,7 @@ class Admin extends DatabaseConnection
 
     public function getManagerById($id)
     {
-        $sql = "SELECT * FROM osoby WHERE rola='kierownik' AND id_osoby='$id'";
+        $sql = "SELECT * FROM osoby WHERE id_osoby='$id'";
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();

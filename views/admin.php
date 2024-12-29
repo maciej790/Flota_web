@@ -223,15 +223,7 @@ if (!isset($_SESSION['user']) or $_SESSION['user']['rola'] !== 'admin') {
             }
 
             ?>
-
-
-
-
-
-
         </main>
-
-
     </div>
 
 </body>
