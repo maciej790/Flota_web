@@ -39,6 +39,8 @@ class Admin extends DatabaseConnection
             ':login' => $login,
             ':password' => $password,
         ]);
+
+        echo $sql;
     }
 
 

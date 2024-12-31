@@ -192,7 +192,7 @@ LEFT JOIN
         
             -- Zaktualizuj status pojazdu na 'dostępny'
             UPDATE pojazdy
-            SET status = 'dostępny'
+            SET status = 'dostepny'
             WHERE id_pojazdu = pojazd_id;
         
             -- Usuń wpis z tabeli wypozyczenia

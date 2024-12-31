@@ -25,7 +25,7 @@ class Employer extends DatabaseConnection
 
     public function getAvalibleCars()
     {
-        $sql = "SELECT * FROM pojazdy WHERE status='dostępny';";
+        $sql = "SELECT * FROM pojazdy WHERE status='dostepny';";
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();

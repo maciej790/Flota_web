@@ -85,7 +85,7 @@ $employer = new Employer();
                         echo '<td>' . htmlspecialchars($car['data_przegladu']) . '</td>';
                         echo '<td>' . htmlspecialchars($car['przebieg']) . '</td>';
                         echo '<td>';
-                        echo '<a href="?query=' . htmlspecialchars($car['id_pojazdu']) . '" class="edit">Wyślij zapytanie o pojazd</a> | ';
+                        echo '<a href="?query=' . htmlspecialchars($car['id_pojazdu']) . '" class="edit">Wyślij zapytanie o pojazd</a> ';
                         echo '</td>';
                         echo '</tr>';
                     }
@@ -135,6 +135,7 @@ $employer = new Employer();
             }
             function sendQueryForm($employer)
             {
+
             ?>
                 <h2>Stwórz zapytanie o pojazd</h2>
                 <?php if (isset($message)) echo "<p>$message</p>"; ?>
@@ -155,6 +156,8 @@ $employer = new Employer();
                 $poczatek = $_POST['poczatek'] ?? '';
                 $koniec = $_POST['koniec'] ?? '';
                 $uzasadnienie = $_POST['uzasadnienie'] ?? '';
+
+
 
                 if (isset($_POST['send'])) {
                     if ($poczatek && $koniec && $uzasadnienie) {
