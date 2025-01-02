@@ -1,5 +1,4 @@
 <?php
-require_once "../dataBase/DatabaseConnection.php";
 
 class Manager extends DatabaseConnection
 {
@@ -217,7 +216,7 @@ LEFT JOIN
         return $vehicles;
     }
 
-    function getVehicelById($id)
+    function getVehicleById($id)
     {
         $sql = "SELECT * FROM pojazdy WHERE id_pojazdu = '$id'";
 
@@ -241,7 +240,7 @@ LEFT JOIN
 
 
 
-    public function deleteVehilce($vehicleId)
+    public function deleteVehicle($vehicleId)
     {
         try {
             $stmt = $this->pdo->prepare("DELETE FROM pojazdy WHERE id_pojazdu = ?");

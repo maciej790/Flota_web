@@ -1,0 +1,1 @@
+php vendor/bin/phpunit --testdox tests/[nazwa_pliku_z_testem].php

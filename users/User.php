@@ -1,25 +1,23 @@
 <?php
+
 class User extends DatabaseConnection
 {
     public $userData;
+    public $pdo;
+
+    public function __construct($pdo = null)
+    {
+        // Możliwość wstrzyknięcia PDO dla testów
+        $this->pdo = $pdo ?: parent::__construct();
+    }
 
     public function signIn($login, $password)
     {
-
-        parent::__construct();
         $sql = "SELECT * FROM osoby WHERE login = :login AND password = :password";
 
         try {
-            // Przygotowanie zapytania z użyciem parametrów
             $stmt = $this->pdo->prepare($sql);
-
-            // Przekazanie parametrów do zapytania
-            $stmt->execute([
-                ':login' => $login,
-                ':password' => $password
-            ]);
-
-            // Pobranie wyniku
+            $stmt->execute([':login' => $login, ':password' => $password]);
             $userData = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($userData) {
@@ -41,7 +39,7 @@ class User extends DatabaseConnection
                         break;
                 }
             } else {
-                echo "Błędny login lub hasło!";
+                // echo "Błędny login lub hasło!"; //zakomentowane, bo w testach sie wyswietla ten log
                 unset($_SESSION['user']);
             }
         } catch (PDOException $e) {
