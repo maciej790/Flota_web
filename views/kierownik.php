@@ -106,7 +106,6 @@ if (!isset($_SESSION['user']) or $_SESSION['user']['rola'] !== 'kierownik') {
 
                     <button type="submit" name="add">Dodaj</button>
                 </form>
-
                 <?php
                 $imie = $_POST['imie'] ?? '';
                 $nazwisko = $_POST['nazwisko'] ?? '';
@@ -225,7 +224,7 @@ if (!isset($_SESSION['user']) or $_SESSION['user']['rola'] !== 'kierownik') {
                     header("Location: ../index.php");
                 }
 
-                echo '<table border="1" cellpadding="10" cellspacing="0">';
+                echo '<table border="1" cellpadding="10" cellspacing="0" id="pracownicy">';
                 echo '<thead>';
                 echo '<tr>';
                 echo '<th>Imię</th>';
@@ -409,7 +408,7 @@ if (!isset($_SESSION['user']) or $_SESSION['user']['rola'] !== 'kierownik') {
                     header("Location: ../index.php");
                 }
 
-                echo '<table border="1" cellpadding="10" cellspacing="0">';
+                echo '<table border="1" cellpadding="10" cellspacing="0" id="pojazdy">';
                 echo '<thead>';
                 echo '<tr>';
                 echo '<th>Marka</th>';
@@ -596,6 +595,7 @@ if (!isset($_SESSION['user']) or $_SESSION['user']['rola'] !== 'kierownik') {
             }
             function reportDashboard($manager)
             {
+                echo "<h2>Raport wypożyczeń pojazdów</h2>";
                 $report = $manager->generateReport();
 
                 // Sprawdzamy, czy raport zawiera jakiekolwiek dane

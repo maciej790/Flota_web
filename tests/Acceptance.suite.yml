@@ -1,0 +1,30 @@
+# Codeception Acceptance Test Suite Configuration
+#
+# Perform tests in a browser by either emulating one using PhpBrowser, or in a real browser using WebDriver.
+# If you need both WebDriver and PhpBrowser tests, create a separate suite for each.
+
+actor: AcceptanceTester
+modules:
+  enabled:
+    - PhpBrowser:
+        url: http://localhost/project
+# Add Codeception\Step\Retry trait to AcceptanceTester to enable retries
+step_decorators:
+  - Codeception\Step\ConditionalAssertion
+  - Codeception\Step\TryTo
+  - Codeception\Step\Retry
+# actor: AcceptanceTester
+# modules:
+#   enabled:
+#     - WebDriver:
+#         url: "http://localhost/flota" # Ustaw tutaj URL swojej aplikacji
+#         browser: chrome # Możesz używać "chrome" lub "firefox"
+#         window_size: maximize # Opcjonalnie, aby zmaksymalizować okno przeglądarki
+#     - \Helper\Acceptance
+
+# acceptance.suite.yml
+# actor: AcceptanceTester
+# modules:
+#   enabled:
+#     - PhpBrowser:
+#         url: http://localhost/flota
